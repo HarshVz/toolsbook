@@ -58,10 +58,17 @@ const Home = () => {
                 onSubmit={handleManualSubmit}
             />
             <div className={`flex border-b border-b-zinc-600 justify-between items-center pb-3 mb-4 sm:pb-0 sm:border-0 sm:mb-6 transition duration-300 ${isModalOpen ? "blur-md" : ""} ${isModalOpen2 ? "blur-md" : ""}`}>
-                <h1 className='sm:block hidden text-white text-2xl h-full capitalize'>Hello {localStorage.getItem('username')} 👋 </h1>
+                <h1 className='sm:block hidden text-white text-2xl h-full capitalize'>Hello {localStorage.getItem('username')
+    ? localStorage.getItem('username')
+    : "User"} 👋 </h1>
                 <h1 className='sm:hidden flex justify-center items-center gap-2 text-white text-lg h-full capitalize'>
-                    <div className='w-6 h-6 text-xs bg-green-800 flex justify-center items-center rounded-full'>{localStorage.getItem('username').charAt(0).toUpperCase()}</div>
-                    {localStorage.getItem('username')}
+                    <div className='w-6 h-6 text-xs bg-green-800 flex justify-center items-center rounded-full'>{localStorage.getItem('username')
+    ? localStorage.getItem('username').charAt(0).toUpperCase()
+    : ""}
+</div>
+{localStorage.getItem('username')
+    ? localStorage.getItem('username')
+    : "User"}
                 </h1>
                 <div className='flex justify-center items-center gap-3'>
                 <button onClick={() => setIsModalOpen2(true)} className="text-xs transition duration-300 bg-green-500/20 text-green-200 sm:px-3 px-2 h-8 sm:h-10  rounded-xl">Manual</button>

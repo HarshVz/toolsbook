@@ -11,9 +11,10 @@ const Container = ({children}) => {
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
             useEffect(() => {
-                // if(!localStorage.getItem('token')){
-                //     navigate('/login');
-                // }
+                if(!localStorage.getItem('token')){
+                    alert('Please Login Again!')
+                    navigate('/login');
+                }
             }, [])
 
   return (
