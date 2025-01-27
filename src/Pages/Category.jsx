@@ -49,10 +49,12 @@ const Category = () => {
             const tools = await getTools();
             console.log('Tools: ', tools); // To check what data you get
             setCollections(tools);
-            const categories = await getCategories();
-            setCategory(categories);
-            setSelectCategory(categories[0].name)
-            console.log("filtredTools" ,filteredTools)
+            const categories = await getCategories()
+            if(categories.length > 0) {
+                setCategory(categories);
+                setSelectCategory(categories[0].name)
+                // console.log("filtredTools" ,filteredTools)
+            };
             setIsLoading(false)
         };
         fetchTools();
