@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#container::-webkit-scrollbar {
+    width: 6px;
+    padding-top: 20px;
+  }
+
+  /* Track */
+  #container::-webkit-scrollbar-track {
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  #container::-webkit-scrollbar-thumb:hover {
+    background: #000;
+  }

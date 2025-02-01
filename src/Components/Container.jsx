@@ -40,7 +40,7 @@ const Container = ({ children }) => {
         )}
 
         {/* Main Content - Scrollable */}
-        <div className="flex-1 p-4 lg:p-8 overflow-y-auto h-full">
+        <div className="flex-1 p-4 lg:p-8 overflow-y-auto h-full" id="container">
           {children}
         </div>
       </div>
