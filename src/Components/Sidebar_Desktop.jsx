@@ -103,10 +103,19 @@ const Sidebar_Desktop = ({isSidebarOpen, Title}) => {
 
                     <p className='text-white text-xs px-5 flex justify-start gap-3 border-t-2 border-b-2 border-zinc-900 py-2 items-center font-mono'>📌 Operations</p>
 
-                    <div className='mt-3 space-y-1'>
-                    <button onClick={() => setIsModalOpen(true)} className="flex items-center px-3 py-2 rounded-lg hover:bg-zinc-800 transition duration-300 text-zinc-400 hover:text-zinc-200 w-full gap-3">Add Category </button>
-            <button onClick={() => setIsModalOpen3(true)} className="flex items-center px-3 py-2 rounded-lg hover:bg-zinc-800 transition duration-300 text-zinc-400 hover:text-zinc-200 w-full">Add Link</button>
-            <button onClick={() => setIsModalOpen2(true)} className="flex items-center px-3 py-2 rounded-lg hover:bg-zinc-800 transition duration-300 text-zinc-400 hover:text-zinc-200 w-full">Add Manual Data</button>
+                    <div className='mt-3 space-y-3'>
+                    <button onClick={() => setIsModalOpen(true)} className="flex items-center px-3 py-2 rounded-lg hover:bg-yellow-900 bg-yellow-800 border-2 border-yellow-600 transition duration-300 text-yellow-100 hover:text-zinc-200 w-full gap-3 justify-between">
+                        <p>Category</p>
+                        <p>+</p>
+                    </button>
+            <button onClick={() => setIsModalOpen3(true)} className="flex items-center px-3 py-2 rounded-lg hover:bg-yellow-900 bg-yellow-800 border-2 border-yellow-600 transition duration-300 text-yellow-100 hover:text-zinc-200 w-full gap-3 justify-between">
+                <p>URL</p>
+                <p>+</p>
+            </button>
+            <button onClick={() => setIsModalOpen2(true)} className="flex items-center px-3 py-2 rounded-lg hover:bg-yellow-900 bg-yellow-800 border-2 border-yellow-600 transition duration-300 text-yellow-100 hover:text-zinc-200 w-full gap-3 justify-between">
+                <p>Manual</p>
+                <p>+</p>
+            </button>
 
                     </div>
                     {/* {category && category.map(cat => (
