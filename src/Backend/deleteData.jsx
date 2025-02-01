@@ -2,30 +2,38 @@ import axios from "axios";
 import { BACKEND_URL } from "../utils";
 import { getDataFromWeb } from "../Scrape/index";
 import { useRecoilState } from 'recoil';
+import {loading} from '../store/ideas'
 import { collection } from '../store/ideas';
 
 const deleteData = () => {
     const [collections, setCollections] = useRecoilState(collection);
+    const [isLoading, setIsLoading] = useRecoilState(loading);
 
     const deleteTool = async (name, id) => {
+        console.log(name, id)
+        setIsLoading(true);
+        try {
+            if(!name && !id){
+                console.log("Please provide either name or id.");
+                alert("Please provide either name or id");
+            }
 
-        if(!name && !id){
-            console.log("Please provide either name or id.");
-            alert("Please provide either name or id");
+            const headers = {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Add your authentication token if needed
+                'Content-Type': 'application/json'  // Set appropriate content type
+              };
+
+            const response = await axios.delete(`${BACKEND_URL}/tool/${id}`, { headers: headers});
+            console.log(response);
+            // const tools = await getTools();
+            const updatedCollections = collections.filter(tool => tool.name !== name);
+            setCollections(updatedCollections);
+            localStorage.setItem('tools', JSON.stringify(updatedCollections));
+            setIsLoading(false);
+            return true;
+        } catch (error) {
+            console.error(error);
         }
-
-        const headers = {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Add your authentication token if needed
-            'Content-Type': 'application/json'  // Set appropriate content type
-          };
-
-        const response = await axios.delete(`${BACKEND_URL}/tool/${id}`, { headers: headers});
-        console.log(response);
-        // const tools = await getTools();
-        const updatedCollections = collections.filter(tool => tool.name !== name);
-        setCollections(updatedCollections);
-        localStorage.setItem('tools', JSON.stringify(updatedCollections));
-        return true;
     };
 
     const deleteCategory = async (categoryName, id) => {
@@ -35,6 +43,7 @@ const deleteData = () => {
         }
         console.log(categoryName, id)
         try {
+            setIsLoading(true);
             const headers = {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Add your authentication token if needed
                 'Content-Type': 'application/json'  // Set appropriate content type
@@ -44,11 +53,13 @@ const deleteData = () => {
                 const updatedCollections = collections.filter(tool => tool.category!== categoryName);
                 setCollections(updatedCollections);
                 localStorage.setItem('tools', JSON.stringify(updatedCollections));
+                setIsLoading(false);
                 return true;
               }
         } catch (error) {
             console.error(error);
             alert("Failed to delete category");
+            setIsLoading(false);
         }
 
 }

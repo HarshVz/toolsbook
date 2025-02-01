@@ -49,7 +49,7 @@ export default function SignIn() {
     <>
 
 {loadingState ? (
-            <div className="Loading w-full h-full bg-zinc-800/90 fixed z- inset-0 rounded-md text-zinc-400 flex justify-center items-center"
+            <div className="Loading w-full h-full bg-zinc-900/90 fixed z- inset-0 rounded-md text-zinc-400 flex justify-center items-center"
             style={{zIndex: 1000}}>
 
             <div class="flex justify-center items-center flex-col">
@@ -62,7 +62,7 @@ export default function SignIn() {
                 class="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.5s]"
                 ></div>
             </div>
-            <p className='capitalize px-5'>Fetching the data!</p>
+            <p className='capitalize px-5'>Validating The User!</p>
           </div>
 
           </div>

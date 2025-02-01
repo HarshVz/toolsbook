@@ -21,6 +21,11 @@ const createData = () => {
 
             if(response){
                 if(response.title && data.url && response.img && response.icon && data.category && data.keywords){
+
+                    const filteredResponseKeywords = response.keywords?.filter(keyword => keyword !== undefined && !Array.isArray(keyword)) || [];
+
+                    const filteredDataKeywords = data.keywords.filter(keyword => keyword !== undefined && !Array.isArray(keyword));
+
                     new_data = {
                         name: data.title || response.title,
                         url: data.url,
@@ -28,9 +33,10 @@ const createData = () => {
                         image: response.img,
                         icon: response.icon,
                         category: data.category,
-                        keywords: [...response.keywords, ...data.keywords],
+                        keywords: response.keywords ? [...filteredResponseKeywords, ...data.keywords] : data.keywords,
                     }
                     const updatedCollections = [...collections, new_data];
+                    console.log(new_data)
 
                     const results = axios.post(`${BACKEND_URL}/createTools`,
                         {data: new_data}, { headers: headers }

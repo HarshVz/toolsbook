@@ -1,6 +1,6 @@
 import './App.css'
 import React, {useEffect} from 'react'
-import { Home, Error, SignUp, SignIn, Tasks, Category, Loader } from './Pages'
+import { Home, Error, SignUp, SignIn, Tasks, Category, Loader, Profile, FeaturesPage} from './Pages'
 import { Container } from './Components'
 import {Routes, Route} from 'react-router-dom'
 import {navLinks} from './store/ideas'
@@ -15,11 +15,19 @@ function App() {
         { component: Category, path: '/category' },
         { component: SignIn, path: '/login' },
         { component: SignUp, path: '/signup' },
+        { component: Profile, path: '/profile' },
+        { component: FeaturesPage, path: '/features'},
         { component: Error, path: '*' }
     ])
+    // const [navlink, setNavlinks] = useState([
+    //     { name: 'Home', path: '/' },
+    //     { name: 'Category', path: '/category' },
+    // ])
+
     const [navlink, setNavlinks] = useState([
         { name: 'Home', path: '/' },
-        { name: 'Category', path: '/category' },
+        { name: 'Profile', path: '/profile' },
+        { name: 'Features', path: '/features' },
     ])
 
     const [globalLinks, setGlobalLinks] = useRecoilState(navLinks)

@@ -2,21 +2,19 @@ import React, { useEffect, useState } from 'react'
 // import { useParams } from 'react-router-dom'
 import getData from '../Backend/getData'
 import deleteData from '../Backend/deleteData';
-import { Trash2,X, ListFilterPlus, UserRoundPen } from 'lucide-react';
+import { Trash2,X, ListFilterPlus } from 'lucide-react';
 
-import { Tools, SearchBar, CategoryModal, Modal, Modalv2 } from '../Components';
+import { Tools, SearchBar, CategoryModal } from '../Components';
 import { collection, categories,filteredCollection, selectedCategory, filterByCat } from '../store/ideas';
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {loading} from '../store/ideas'
-import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Category = () => {
 
     const [category, setCategory] = useRecoilState(categories)
-    const [isModalOpen, setIsModalOpen] = useState(false);
+        const [isModalOpen, setIsModalOpen] = useState(false);
+    const filteredCollections = useRecoilValue(filteredCollection)
     const {getTools, getCategories } = getData();
-    const [isModalOpen3, setIsModalOpen3] = useState(false);
-    const [isModalOpen2, setIsModalOpen2] = useState(false);
     const [collections, setCollections] = useRecoilState(collection)
     const filteredTools = useRecoilValue(filterByCat)
     const {deleteCategory} = deleteData()
@@ -60,60 +58,22 @@ const Home = () => {
             setIsLoading(false)
         };
         fetchTools();
-
     }, []);
 
     const onClickHandler = async (name) => {
         setSelectCategory(name)
     }
-
-    const handleSubmit2 = (data) => {
-        console.log('Form submitted:', data);
-        setIsModalOpen(false);
-    };
-
-    const handleManualSubmit = (data) => {
-        console.log('Form submitted:', data);
-        setIsModalOpen2(false);
-    };
-
-
   return (
     <>
-
-            <Modalv2
-                isOpen={isModalOpen3}
-                onClose={() => setIsModalOpen3(false)}
-                onSubmit={handleSubmit2}
-            />
-            <Modal
-                isOpen={isModalOpen2}
-                onClose={() => setIsModalOpen2(false)}
-                onSubmit={handleManualSubmit}
-            />
-
             <CategoryModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onSubmit={handleSubmit}
             />
 
-    <div className='flex justify-between items-center mb-5 border-b border-b-zinc-600 sm:border-0 pb-3 sm:pb-0'>
-            <h1 className='sm:block hidden text-white text-2xl h-full capitalize'>Hello {localStorage.getItem('username')
-            ? localStorage.getItem('username')
-            : "User"} 👋 </h1>
-                        <h1 className='sm:hidden flex justify-center items-center gap-2 text-white text-lg h-full capitalize'>
-                            <div className='w-6 h-6 text-xs bg-green-800 flex justify-center items-center rounded-full'>{localStorage.getItem('username')
-            ? localStorage.getItem('username').charAt(0).toUpperCase()
-            : ""}
-        </div>
-        {localStorage.getItem('username')
-            ? localStorage.getItem('username')
-            : "User"}
-                        </h1>
-        <div className='flex gap-3 text-white'>
-         <Link to="/profile"> <UserRoundPen size={24} /> </Link>
-        </div>
+    <div className='flex justify-between items-center mb-5'>
+        <h1 className='text-white text-3xl h-full'>Categories </h1>
+        <button onClick={() => setIsModalOpen(true)} className="text-xl transition duration-300 bg-green-500/20 text-green-200 h-10 w-10 rounded-full flex justify-center items-center"><ListFilterPlus size={24}/></button>
     </div>
 
     <SearchBar />
@@ -156,8 +116,7 @@ const Home = () => {
             (
                 filteredTools.map(tool => (
                     <Tools
-                        id={tool.id}
-                        key={tool.name}
+                        key={tool.id}
                         title={tool.name}
                         icon={tool.icon}
                         category={tool.category}
@@ -197,4 +156,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Category

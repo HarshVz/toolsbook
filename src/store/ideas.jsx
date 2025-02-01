@@ -44,6 +44,9 @@ const filterByCat = selector({
     get: ({ get }) => {
         const category = get(selectedCategory);
         const tools = get(filteredCollection);
+        if(category.toLowerCase() === "all"){
+            return tools;
+        }
         const filtered = tools.filter(tool => tool.category === category)
         if (filtered) { return filtered } else { return tools }
     }

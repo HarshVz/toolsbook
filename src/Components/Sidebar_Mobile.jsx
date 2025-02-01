@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sidebar_Mobile = ({isSidebarOpen, Title, onClick}) => {
   return (
-    <div className="lg:hidden fixed right-5 bottom-5 shadow-lg rounded-full aspect-square h-16 w-16 flex justify-center items-center border-2 border-zinc-700/50 bg-zinc-800">
+    <div className="lg:hidden fixed right-5 bottom-5 shadow-lg rounded-full aspect-square h-16 w-16 flex justify-center items-center border-2 border-zinc-700/50 bg-zinc-900">
 <button
           onClick={() => onClick()}
           className="text-zinc-400 hover:text-zinc-200"

@@ -9,7 +9,7 @@ const Loader = () => {
 
 
   return (
-    <div className={`absolute inset-0 flex items-center justify-center z-60 min-h-screen h-full bg-zinc-900/80 w-full ${isLoading ? "block" : "hidden"}`}>
+    <div className={`absolute inset-0 flex items-center justify-center z-60 min-h-screen h-full bg-zinc-950/80 w-full ${isLoading ? "block" : "hidden"}`}>
       <div className="w-full max-w-md">
 
 

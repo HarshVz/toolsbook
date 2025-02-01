@@ -67,7 +67,7 @@ export default function SignUp() {
                 class="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.5s]"
                 ></div>
             </div>
-            <p className='capitalize px-5'>Fetching the data!</p>
+            <p className='capitalize px-5'>Please Wait While We Create Your Profile!</p>
           </div>
 
           </div>
