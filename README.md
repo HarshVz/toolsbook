@@ -2,7 +2,7 @@
 
 [![Deployed with Vercel](https://img.shields.io/badge/deployed%20with-vercel-%23000000.svg)](https://vercel.com)  | [![Built with React](https://img.shields.io/badge/built%20with-react-%2361DAFB.svg)](https://reactjs.org) | [![Firebase Backend](https://img.shields.io/badge/backend-firebase-%23FFCA28.svg)](https://firebase.google.com)
 
-![Toolsbook Banner](./public/social-preview.webp) <!-- Add your banner image if available -->
+![Toolsbook Banner](./public/preview.png) <!-- Add your banner image if available -->
 
 A modern bookmark manager with automated scraping capabilities, built to organize web resources efficiently. Save links with automatic metadata extraction, AI-powered keywords, and smart categorization.
 
