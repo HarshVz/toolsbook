@@ -3,12 +3,17 @@ import { collection } from '../store/ideas'
 import { useRecoilState } from 'recoil'
 import { Modal } from './'
 import deleteData from '../Backend/deleteData';
-import { Link, CircleX, Trash } from 'lucide-react';
+import { ExternalLink, Trash, Globe } from 'lucide-react';
+import {motion} from "framer-motion"
 
 const Tools = ({id, title="", img = "", description = "", icon = "", url="", category }) => {
 
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {deleteTool} = deleteData()
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [iconLoaded, setIconLoaded] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleSubmit = (data) => {
         console.log('Form submitted:', data);
@@ -22,66 +27,151 @@ const Tools = ({id, title="", img = "", description = "", icon = "", url="", cat
     const [loaded, setLoaded] = useState(false)
     const [collections, setCollections] = useRecoilState(collection)
 
-    return (
-        <div className="bg-zinc-950/50 rounded-3xl">
-             <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleSubmit}
-      />
-      {img && img != "None" && <img src={img} className='object-cover rounded-3xl mb-4 w-full h-52' alt={title} />}
-      {img==="None" && <div className='mb-4 h-52 w-full rounded-3xl bg-gradient-to-b from-zinc-900 to-zinc-950 p-5 text-white text-3xl' >{title} </div>}
-      {!img && <div className='mb-4 h-52 w-full rounded-3xl bg-gradient-to-b from-zinc-900 to-zinc-950 p-5 text-white text-3xl' >{title} </div>}
-      {/* {img && img != "None" && <img src={img} className='object-cover w-full rounded mb-3 md:hidden' alt={title} />} */}
-      <div className='mt-3 flex gap-3'>
-        <div className="flex items-center justify-between">
-        {
-                                icon != "" ? (
-                                    <div className="w-12 h-12 rounded-full">
-                                        <img src={icon} alt="icon" className='w-full h-full object-cover hidden rounded-full' onLoad={() => setLoaded(true)} />
-                                        {
-                                            loaded ? (
-                                                <img src={icon} alt="icon" className='w-full h-full object-cover rounded-full' />
-                                            ) : (<div className="text-xs bg-green-500/20 text-green-400 rounded-full w-full h-full flex justify-center items-center">
-                                                {title.trim().charAt(0).toUpperCase()}
-                                            </div>
-                                            )
-                                        }
+    // Extract domain from URL
+    const getDomain = () => {
+        try {
+            const urlObj = new URL(url);
+            return urlObj.hostname.replace('www.', '');
+        } catch {
+            return 'Unknown';
+        }
+    };
 
-                                    </div>
-                                ) : (
-                                    <div className="w-12 h-12 rounded-full ">
-                                        <div className="text-2xl bg-green-500/20 text-green-400 px-2 py-1 rounded-full w-full h-full flex justify-center items-center">
-                                                {title.trim().charAt(0).toUpperCase()}
-                                            </div>
-                                    </div>
-                                )
-                            }
-        </div>
-            <div className='w-full'>
-            <div className="flex justify-between items-center mb-1 w-full">
-                <div className="text-zinc-200 text-sm w-4/5 line-clamp-1">{title}</div>
-            </div>
-            <div className="flex items-center justify-between w-full">
-                <div className="flex justify-center items-center gap-3">
-                    <span className={`text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded`}>{category}</span>
-                    <a href={url} target="_blank" rel="noopener noreferrer" className="text-xs bg-green-500/20 text-green-400 w-6 h-6 flex justify-center items-center rounded"><Link size={12}/></a>
-                </div>
-                {
-                    (
-                        <div className="flex  gap-3">
-                            <button onClick={async () => deleteTool(title, id)}  className="text-xs bg-red-500/20 text-red-400 w-6 h-6 flex justify-center items-center rounded"><Trash size={12} /></button>
+    return (
+        <motion.div
+
+            className="group bg-neutral-900/60 border border-neutral-800/50 rounded-xl overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-neutral-700/70 hover:bg-neutral-800/40 hover:shadow-lg hover:shadow-black/20"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleSubmit}
+            />
+
+            {/* Screenshot/Preview Section */}
+            <div className="relative bg-gradient-to-br from-neutral-800/50 to-neutral-900/80 overflow-hidden">
+                {img && img !== "None" ? (
+                    <>
+                        <img
+                            src={img}
+                            className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+                            alt={title}
+                            onLoad={() => setImageLoaded(true)}
+                            loading="lazy"
+                        />
+                        {!imageLoaded && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-6 h-6 border-2 border-neutral-600 border-t-neutral-400 rounded-full animate-spin"></div>
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <div className="h-full flex items-center justify-center">
+                        <div className="text-center space-y-2">
+                            <Globe className="w-6 h-6 text-neutral-500 mx-auto" />
+                            <div className="text-neutral-400 text-xs font-medium">{getDomain()}</div>
                         </div>
-                    )
-                }
-                {/* <div className="flex -space-x-2">
-                    <div className="w-6 h-6 rounded-full bg-zinc-600"></div>
-                    <div className="w-6 h-6 rounded-full bg-zinc-700"></div>
-                </div> */}
+                    </div>
+                )}
+
+                {/* Category Badge */}
+                {category && (
+                    <div className="absolute top-2 right-2">
+                        <span className="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-md backdrop-blur-sm">
+                            {category}
+                        </span>
+                    </div>
+                )}
+
+                {/* Hover Overlay with Actions */}
+                <div className={`absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center gap-2 transition-all duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                    <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-8 h-8 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white/90 hover:bg-white/20 hover:scale-110 transition-all duration-200"
+                    >
+                        <ExternalLink size={14} />
+                    </a>
+                    <button
+                        onClick={onDelete}
+                        className="flex items-center justify-center w-8 h-8 bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-lg text-red-400 hover:bg-red-500/30 hover:scale-110 transition-all duration-200"
+                    >
+                        <Trash size={14} />
+                    </button>
+                </div>
             </div>
+
+            {/* Content Section */}
+            <div className="p-3 space-y-3">
+                {/* Header with Favicon and Title */}
+                <div className="flex items-start gap-3">
+                    {/* Favicon */}
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg overflow-hidden bg-neutral-800/50">
+                        {icon && icon !== "" ? (
+                            <>
+                                <img
+                                    src={icon}
+                                    alt="favicon"
+                                    className={`w-full h-full object-cover transition-opacity duration-300 ${iconLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    onLoad={() => setIconLoaded(true)}
+                                />
+                                {!iconLoaded && (
+                                    <div className="w-full h-full bg-neutral-700/50 flex items-center justify-center text-neutral-400 text-xs font-semibold">
+                                        {title.trim().charAt(0).toUpperCase()}
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <div className="w-full h-full bg-gradient-to-br from-neutral-700 to-neutral-800 flex items-center justify-center text-neutral-300 text-sm font-semibold">
+                                {title.trim().charAt(0).toUpperCase()}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Title and Domain */}
+                    <div className="flex-1 min-w-0">
+                        <h3 className="text-neutral-200 text-sm font-medium leading-tight line-clamp-2 mb-1">
+                            {title}
+                        </h3>
+                        <p className="text-neutral-500 text-xs font-mono">
+                            {getDomain()}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Description */}
+                {description && description !== "None" && (
+                    <p className="text-neutral-400 text-xs leading-relaxed line-clamp-2">
+                        {description}
+                    </p>
+                )}
+
+                {/* Footer Actions */}
+                <div className="flex items-center justify-between pt-1">
+                    <div className="flex items-center gap-2">
+                        <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-2 py-1 text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-md hover:bg-emerald-500/30 transition-colors duration-200"
+                        >
+                            <ExternalLink size={10} />
+                            Visit
+                        </a>
+                    </div>
+
+                    <button
+                        onClick={onDelete}
+                        className="inline-flex items-center justify-center w-6 h-6 text-neutral-500 hover:text-red-400 hover:bg-red-500/10 rounded-md transition-all duration-200"
+                    >
+                        <Trash size={12} />
+                    </button>
+                </div>
             </div>
-            </div>
-        </div>
+        </motion.div>
     )
 }
 

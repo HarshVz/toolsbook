@@ -7,6 +7,7 @@ import Category from "./Category";
 import Loader from "./Loader";
 import Profile from "./Profile";
 import FeaturesPage from "./FeaturesPage";
+import Gallary from "./Gallary";
 export{
     Home,
     Error,
@@ -16,5 +17,6 @@ export{
     Category,
     Loader,
     Profile,
-    FeaturesPage
+    FeaturesPage,
+    Gallary
 }

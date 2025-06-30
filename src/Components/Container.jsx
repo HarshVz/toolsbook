@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Sidebar_Desktop, Sidebar_Mobile } from "./";
 import { Loader } from "../Pages";
 import { useNavigate } from "react-router-dom";
+import {easeInOut, motion, stagger} from "framer-motion"
 
 const Container = ({ children }) => {
   const navigate = useNavigate();
@@ -15,6 +16,42 @@ const Container = ({ children }) => {
       navigate("/login");
     }
   }, []);
+
+    // const containerVarients = {
+    //     hidden: {
+    //         opacity: 0,
+    //         filter: "blur(4px)",
+    //         y:20
+    //     },
+    //     show: {
+    //         opacity: 1,
+    //         filter: "blur(0px)",
+    //         y: 0,
+    //         transition: {
+    //             ease: easeInOut,
+    //             duration: 0.4,
+    //             staggerChildren: 0.2,
+    //         }
+    //     }
+    // }
+        const containerVarients = {
+        hidden: {
+            opacity: 0,
+            filter: "blur(4px)",
+            y:20
+        },
+        show: {
+            opacity: 1,
+            filter: "blur(0px)",
+            y: 0,
+            transition: {
+                ease: easeInOut,
+                duration: 0.4,
+                staggerChildren: 0.2,
+            }
+        }
+    }
+
 
   return (
     <div className="h-screen flex flex-col bg-zinc-950">
@@ -40,9 +77,13 @@ const Container = ({ children }) => {
         )}
 
         {/* Main Content - Scrollable */}
-        <div className="flex-1 p-4 lg:p-8 overflow-y-auto h-full" id="container">
+        <motion.div
+        variants={containerVarients}
+        initial="hidden"
+        animate="show"
+        className="flex-1 p-4 lg:p-5 overflow-y-auto h-full bg-zinc-950" id="container">
           {children}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

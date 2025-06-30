@@ -10,6 +10,13 @@ const deleteData = () => {
     const [isLoading, setIsLoading] = useRecoilState(loading);
 
     const deleteTool = async (name, id) => {
+        if(!window.confirm(`Are you sure you want to delete "${name}"?`)) return;
+        if(!name && !id){
+            console.log("Please provide either name or id.");
+            alert("Please provide either name or id");
+            return false;
+        }
+
         console.log(name, id)
         setIsLoading(true);
         try {
@@ -37,6 +44,7 @@ const deleteData = () => {
     };
 
     const deleteCategory = async (categoryName, id) => {
+        if(!window.confirm(`Are you sure you want to delete "${categoryName}" category?`)) return;
         if(!categoryName && !id){
             console.log("Please provide a category name. & id");
             alert("Please provide a category name & id");

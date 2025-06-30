@@ -8,6 +8,8 @@ import Modal from "./Modal";
 import Modalv2 from './Modalv2'
 import Container from "./Container";
 import CategoryModal from "./CategoryModal";
+import ImageGallary from "./ImageGallary";
+
 
 export {
     Board,
@@ -19,5 +21,6 @@ export {
     Modal,
     Modalv2,
     Container,
-    CategoryModal
+    CategoryModal,
+    ImageGallary
 }
