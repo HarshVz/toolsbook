@@ -9,7 +9,7 @@ const createData = () => {
 
     const createPost = async (data) => {
 
-        console.log("Input: ", data)
+        // console.log("Input: ", data)
             let response = await getDataFromWeb(data.url);
             response = response.data
             let new_data = {}
@@ -36,14 +36,14 @@ const createData = () => {
                         keywords: response.keywords ? [...filteredResponseKeywords, ...data.keywords] : data.keywords,
                     }
                     const updatedCollections = [...collections, new_data];
-                    console.log(new_data)
+                    // console.log(new_data)
 
                     const results = axios.post(`${BACKEND_URL}/createTools`,
                         {data: new_data}, { headers: headers }
                     )
 
                     setCollections(updatedCollections);
-                    console.log("Response: ", updatedCollections);
+                    // console.log("Response: ", updatedCollections);
                     localStorage.setItem('tools', JSON.stringify(updatedCollections));
                     return true;
                 }else{
@@ -92,7 +92,7 @@ const createData = () => {
             return false;
         }
         try {
-            console.log(data);
+            // console.log(data);
             const headers = {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,  // Add your authentication token if needed
                 'Content-Type': 'application/json'  // Set appropriate content type

@@ -14,7 +14,7 @@ const getData = () => {
             'Content-Type': 'application/json'  // Set appropriate content type
           };
         const response = await axios.get(`${BACKEND_URL}/tools`, { headers: headers});
-        console.log(response);
+        // console.log(response);
         // const tools = await getTools();
         if(response.status === 200){
             return response.data.data
@@ -28,7 +28,7 @@ const getData = () => {
             'Content-Type': 'application/json'  // Set appropriate content type
           };
           const response = await axios.get(`${BACKEND_URL}/category`, { headers: headers});
-          console.log("Categories" ,response.data)
+        //   console.log("Categories" ,response.data)
           if(response.status === 200){
             return response.data.data
           }
@@ -40,7 +40,7 @@ const getData = () => {
             'Content-Type': 'application/json'  // Set appropriate content type
           };
           if(!category){
-            console.log("Please provide a category");
+            // console.log("Please provide a category");
             alert("Please provide a category");
           }
         const response = await axios.get(`${BACKEND_URL}/category/${category}`, { headers: headers});

@@ -17,7 +17,7 @@ const deleteData = () => {
             return false;
         }
 
-        console.log(name, id)
+        // console.log(name, id)
         setIsLoading(true);
         try {
             if(!name && !id){
@@ -31,7 +31,7 @@ const deleteData = () => {
               };
 
             const response = await axios.delete(`${BACKEND_URL}/tool/${id}`, { headers: headers});
-            console.log(response);
+            // console.log(response);
             // const tools = await getTools();
             const updatedCollections = collections.filter(tool => tool.name !== name);
             setCollections(updatedCollections);
@@ -49,7 +49,7 @@ const deleteData = () => {
             console.log("Please provide a category name. & id");
             alert("Please provide a category name & id");
         }
-        console.log(categoryName, id)
+        // console.log(categoryName, id)
         try {
             setIsLoading(true);
             const headers = {

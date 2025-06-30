@@ -49,7 +49,8 @@ export const useDataFetching = () => {
                                     setSelectCategory("all")
                                 }
 
-                                console.log('✅ Loaded from cache:', { tools: tools.length, categories: categories.length })
+                                console.log('✅ Loaded from cache:');
+                                // console.log('✅ Loaded from cache:', { tools: tools.length, categories: categories.length })
                                 return { success: true, source: 'cache', data: { tools, categories } }
                             }
                         } catch (parseError) {

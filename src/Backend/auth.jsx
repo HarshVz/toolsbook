@@ -8,7 +8,7 @@ const signin = async (username, password) => {
     try {
         const response = await axios.post(`${BACKEND_URL}/signin`, { username, password });
         if(response.status === 200){
-            console.log(response.data)
+            // console.log(response.data)
             alert('Signin successful!');
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('username', response.data.username);
@@ -31,7 +31,7 @@ const signup = async (name, username, email, password) => {
     try {
         const response = await axios.post(`${BACKEND_URL}/signup`, {name, username, email, password});
         if(response.status === 200){
-            console.log(response.data)
+            // console.log(response.data)
             alert('Signup successful!');
             return response.data
         }
