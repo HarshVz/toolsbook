@@ -86,7 +86,7 @@ const Sidebar_Desktop = ({ isSidebarOpen, Title }) => {
             : 'w-full md:w-64 md:-translate-x-full md:translate-y-0 translate-y-full backdrop:blur-sm'
           }
           lg:translate-x-0 transition-transform duration-300 ease-in-out
-          w-64 bg-zinc-900/95 lg:bg-zinc-900/20 backdrop-filter backdrop-blur-lg
+          w-64 bg-zinc-900/95 lg:bg-zinc-950 lg:border-r lg:border-neutral-900 backdrop-filter backdrop-blur-lg
           overflow-y-auto lg:block min-h-screen h-screen
           shadow-xl
         `}

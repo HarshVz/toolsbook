@@ -8,6 +8,8 @@ import Loader from "./Loader";
 import Profile from "./Profile";
 import FeaturesPage from "./FeaturesPage";
 import Gallary from "./Gallary";
+import View from "./View";
+
 export{
     Home,
     Error,
@@ -18,5 +20,6 @@ export{
     Loader,
     Profile,
     FeaturesPage,
-    Gallary
+    Gallary,
+    View
 }

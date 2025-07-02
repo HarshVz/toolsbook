@@ -81,7 +81,7 @@ const Container = ({ children }) => {
         variants={containerVarients}
         initial="hidden"
         animate="show"
-        className="flex-1 p-4 lg:p-5 overflow-y-auto h-full bg-zinc-950" id="container">
+        className="flex-1 p-4 lg:p-5 lg:px-6 overflow-y-auto h-full bg-zinc-950" id="container">
           {children}
         </motion.div>
       </div>

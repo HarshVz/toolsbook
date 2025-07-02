@@ -1,6 +1,6 @@
 import './App.css'
 import React, {useEffect} from 'react'
-import { Home, Error, SignUp, SignIn, Tasks, Category, Loader, Profile, FeaturesPage, Gallary} from './Pages'
+import { Home, Error, SignUp, SignIn, Tasks, Category, Loader, Profile, FeaturesPage, Gallary, View} from './Pages'
 import { Container } from './Components'
 import {Routes, Route} from 'react-router-dom'
 import {navLinks} from './store/ideas'
@@ -18,7 +18,8 @@ function App() {
         { component: Profile, path: '/profile' },
         { component: FeaturesPage, path: '/features'},
         { component: Gallary, path: '/gallary'},
-        { component: Error, path: '*' }
+        { component: Error, path: '*' },
+        { component: View, path: '/tools/:id' }
     ])
     // const [navlink, setNavlinks] = useState([
     //     { name: 'Home', path: '/' },
