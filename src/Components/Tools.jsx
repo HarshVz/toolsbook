@@ -87,8 +87,8 @@ const Tools = ({id, title="", img = "", description = "", icon = "", url="", cat
                 )}
 
                 {/* Hover Overlay with Actions */}
-                <div className={`absolute inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center gap-2 transition-all duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-                    <a
+                <div className={`absolute inset-0 backdrop-blur-[0.5px] flex items-center justify-center gap-2 transition-all duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                    {/* <a
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -101,7 +101,7 @@ const Tools = ({id, title="", img = "", description = "", icon = "", url="", cat
                         className="flex items-center justify-center w-8 h-8 bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-lg text-red-400 hover:bg-red-500/30 hover:scale-110 transition-all duration-200"
                     >
                         <Trash size={14} />
-                    </button>
+                    </button> */}
                 </div>
                 </Link>
             </div>
