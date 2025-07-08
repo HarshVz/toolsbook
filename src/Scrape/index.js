@@ -19,7 +19,7 @@ const getDataFromWeb = async (url) => {
 
     let new_data = {}; // Use 'let' to avoid global declaration
 
-    console.log(`Fetching data for ${url}:`);
+    // console.log(`Fetching data for ${url}:`);
 
     try {
         if (isYouTubeURL(url)) {
@@ -70,7 +70,7 @@ const getDataFromWeb = async (url) => {
             new_data.url = url;
         }
 
-        console.log(new_data);
+        // console.log(new_data);
         return { data: new_data };
 
     } catch (error) {

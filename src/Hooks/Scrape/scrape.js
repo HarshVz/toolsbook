@@ -6,7 +6,7 @@ const getScreenshot = async (url) => {
         throw new Error('Invalid URL');
     }
     url = encodeURI(url);
-    console.log(SECRET)
+    // console.log(SECRET)
     const headers = {
         'x-secret-key': `${SECRET}`,
         'Content-Type': 'application/json'
@@ -30,10 +30,10 @@ const fetchScreenshot = async (url) => {
     while (attempt < maxAttempts) {
         try {
             const result = await getScreenshot(url);
-            console.log(`Screenshot for ${result.url}:`);
-            console.log(`Title: ${result.title}`);
-            console.log(`URL: ${result.url}`);
-            console.log(`Screenshot: ${result.img}`);
+            // console.log(`Screenshot for ${result.url}:`);
+            // console.log(`Title: ${result.title}`);
+            // console.log(`URL: ${result.url}`);
+            // console.log(`Screenshot: ${result.img}`);
             return result;  // Successfully fetched screenshot
         } catch (error) {
             attempt++;
