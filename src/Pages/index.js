@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import FeaturesPage from "./FeaturesPage";
 import Gallary from "./Gallary";
 import View from "./View";
+import Canvas from "./Canvas";
 
 export{
     Home,
@@ -21,5 +22,6 @@ export{
     Profile,
     FeaturesPage,
     Gallary,
-    View
+    View,
+    Canvas
 }

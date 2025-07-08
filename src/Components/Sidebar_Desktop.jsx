@@ -15,9 +15,9 @@ const MODALS = {
 
 // Button types with icons mapped for visual consistency
 const ACTION_BUTTONS = [
-  { name: 'Category', type: MODALS.CATEGORY, icon: Folder },
-  { name: 'URL', type: MODALS.URL, icon: Globe },
-  { name: 'Manual', type: MODALS.MANUAL, icon: BookOpen },
+  { name: 'Space', type: MODALS.CATEGORY, icon: Folder },
+  { name: 'URL Automate', type: MODALS.URL, icon: Globe },
+  { name: 'Manual Data', type: MODALS.MANUAL, icon: BookOpen },
 ];
 
 const Sidebar_Desktop = ({ isSidebarOpen, Title }) => {

@@ -13,7 +13,7 @@ const View = () => {
     useEffect(() => {
         const fetchTools = async () => {
             const data = await fetchData();
-            console.log('Fetched Tools: ', data.data.tools); // To check what data you get
+            // console.log('Fetched Tools: ', data.data.tools); // To check what data you get
             const tool = data.data.tools.find(tool => tool.id === id);
             setToolData(tool);
         };

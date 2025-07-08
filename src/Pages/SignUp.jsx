@@ -28,14 +28,12 @@ export default function SignUp() {
         try {
             setLoadingState(true);
             const response = await signup(name, username, email, password);
-            console.log("Signup: ", response);
+            // console.log("Signup: ", response);
             navigate('/login');
             setLoadingState(false);
         } catch (error) {
             console.error(error);
-            alert('Failed to signup. Please try again.');
             setLoadingState(false);
-            return error
         }
     }
 
@@ -73,10 +71,15 @@ export default function SignUp() {
           </div>
         ) : ""}
 
-    <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-4">
-      <div className="max-w-sm w-full bg-zinc-800 rounded-lg shadow-lg p-8">
+    <div className="h-screen bg-zinc-900 grid md:grid-cols-2">
+
+        <div className='w-full flex justify-center items-center md:block hidden'>
+            <img src="/images/login_1.webp" alt="Signup Illustration" className='h-screen w-full object-cover' />
+        </div>
+
+        <div className=" w-full bg-zinc-900 rounded-lg shadow-lg p-8 flex flex-col justify-center items-center">
         <h2 className="text-3xl font-bold text-zinc-100 text-center mb-8">Sign Up</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="max-w-sm w-full space-y-6">
         <div>
             <label className="block text-zinc-400 text-sm font-medium mb-2">Name</label>
             <div className="relative">
@@ -145,6 +148,7 @@ export default function SignUp() {
           </p>
         </form>
       </div>
+
     </div>
 
     </>

@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 *{
-    font-family: 'Poppins';
+    font-family: 'Inter';
 }
+
+  .sample-canvas {
+    height: 800px;
+    width: 100%;
+  }
+
+ canvas {
+    height: 800px;
+    width: 100%;
+  }
+
+  .upper-canvas {
+    height: 800px;
+    width: 100% !important;
+  }

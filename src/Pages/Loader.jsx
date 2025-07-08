@@ -42,7 +42,7 @@ const Loader = () => {
         strokeLinecap="round"
       ></path>
     </svg>
-    <p class="text-xs font-semibold">Error - Something went wrong.</p>
+    <p className="text-xs font-semibold">Error - Something went wrong.</p>
   </div>
               </div>
             )

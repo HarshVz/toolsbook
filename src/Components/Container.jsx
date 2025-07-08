@@ -17,23 +17,6 @@ const Container = ({ children }) => {
     }
   }, []);
 
-    // const containerVarients = {
-    //     hidden: {
-    //         opacity: 0,
-    //         filter: "blur(4px)",
-    //         y:20
-    //     },
-    //     show: {
-    //         opacity: 1,
-    //         filter: "blur(0px)",
-    //         y: 0,
-    //         transition: {
-    //             ease: easeInOut,
-    //             duration: 0.4,
-    //             staggerChildren: 0.2,
-    //         }
-    //     }
-    // }
         const containerVarients = {
         hidden: {
             opacity: 0,

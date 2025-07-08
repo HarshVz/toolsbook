@@ -212,7 +212,7 @@ const MVP = ({ page=true }) => {
                             )
                         } else {
                             return(
-                                                            <ImageGallary
+                            <ImageGallary
                                 key={`${tool.id}`} // Better key for uniqueness
                                 id={tool.id}
                                 title={tool.name}
@@ -225,7 +225,7 @@ const MVP = ({ page=true }) => {
                         }
                     })
                 ) : (
-                    <div className="col-span-full text-center py-8">
+                    <div className="col-span-full px-2 py-4 w-full">
                         <h2 className="text-xl text-white">
                             {isLoading ? 'Loading...' : 'No Resources Found!'}
                         </h2>

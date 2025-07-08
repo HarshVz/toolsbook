@@ -19,7 +19,7 @@ const signin = async (username, password) => {
         return null
     } catch (error) {
         console.error('Error during signin:', error);
-        alert('Error during signin')
+        alert(error.response.data.message || 'Failed to signin. Please try again.');
         return error
     }
 }
@@ -32,14 +32,25 @@ const signup = async (name, username, email, password) => {
         const response = await axios.post(`${BACKEND_URL}/signup`, {name, username, email, password});
         if(response.status === 200){
             // console.log(response.data)
-            alert('Signup successful!');
+            // alert('Signup successful!');
+            console.log(response.data);
+
+            const { token, username, email, name } = response.data.data;
+            // console.log("Token: ", token);
+            // console.log("Username: ", username);
+            // console.log("Email: ", email);
+            // console.log("Name: ", name);
+            localStorage.setItem('token', token);
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            localStorage.setItem('name', name);
+            // console.log("User data saved to localStorage");
             return response.data
         }
         return null
     } catch (error) {
         console.error('Error during signup:', error);
-        alert('Error during signup')
-        return error
+        alert(error.response.data.message || 'Failed to signup. Please try again.');
     }
 }
 
